@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { json } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
+import { useFetcher, useNavigate } from "@remix-run/react";
 import {
   Page,
   Layout,
@@ -18,7 +18,6 @@ import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }) => {
   await authenticate.admin(request);
-
   return null;
 };
 
@@ -27,7 +26,7 @@ export const action = async ({ request }) => {
   const color = ["Red", "Orange", "Yellow", "Green"][
     Math.floor(Math.random() * 4)
   ];
-  const response = [] 
+  const response = []; 
   const variantResponseJson = await variantResponse.json();
 
   return json({
@@ -38,17 +37,19 @@ export const action = async ({ request }) => {
 
 export default function Index() {
   const fetcher = useFetcher();
+  const navigate = useNavigate();
   const shopify = useAppBridge();
-  
 
-
+  const handleTrackPackage = () => {
+    navigate("/app/track");
+  };
 
   return (
     <Page>
       <TitleBar title="TrackBuddy">
-        <button variant="primary">
+        <Button variant="primary" onClick={handleTrackPackage}>
           Track a package
-        </button>
+        </Button>
       </TitleBar>
       <BlockStack gap="500">
         <Layout>
@@ -60,23 +61,19 @@ export default function Index() {
                     What does TrackBuddy do?
                   </Text>
                   <Text variant="bodyMd" as="p">
-                    This app helps you know about the current status of your product, and track its history.
-                    This way the burden of anticipation and leaving your package to fate is lifted. 
+                    This app shows the current location of your package, and its travel history so far. 
+                    It also lets you know the apprixamate date of arrival so you can make plans around it.
                   </Text>
                 </BlockStack>
              
                 <InlineStack gap="300">
-                  <Button >
-                  Track a package
+                  <Button onClick={handleTrackPackage}>
+                    Track a package
                   </Button>
-                    <Button
-                    >
-                      FAQs
-                    </Button>
-                  
+                  <Button>
+                    FAQs
+                  </Button>
                 </InlineStack>
-               
-  
               </BlockStack>
             </Card>
           </Layout.Section>

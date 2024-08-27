@@ -1,6 +1,7 @@
 name = "remix"
 roles = ["frontend", "backend"]
 webhooks_path = "/webhooks"
+port = 8001
 
 [commands]
 predev = "npx prisma generate"

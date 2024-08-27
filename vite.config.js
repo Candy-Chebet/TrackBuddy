@@ -26,12 +26,7 @@ if (host === "localhost") {
     clientPort: 64999,
   };
 } else {
-  hmrConfig = {
-    protocol: "wss",
-    host: host,
-    port: parseInt(process.env.FRONTEND_PORT) || 8002,
-    clientPort: 443,
-  };
+ 
 }
 
 export default defineConfig({

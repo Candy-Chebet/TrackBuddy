@@ -24,7 +24,9 @@ export default function App() {
           Home
         </Link>
         <Link to="/app/track">Track Package</Link>
-        <Link to="/app/pricing">Billing</Link>
+        
+        {/* <Link to="/app/pricing">subscribe</Link> */}
+        <Link to="/app/subscription">Billing</Link>
       </NavMenu>
       <Outlet />
     </AppProvider>
