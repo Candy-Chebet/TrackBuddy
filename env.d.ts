@@ -1,5 +1,13 @@
 /// <reference types="vite/client" />
 /// <reference types="@remix-run/node" />
 
-APP_NAME = packagetrack
-REACT_GOOGLEMAP_API_KEY= AIzaSyDPNe6vtzuVJ1Pt8LZDzfMCUR5akvpFbgA;
+interface ImportMetaEnv {
+    readonly APP_NAME: string;
+    readonly REACT_GOOGLEMAP_API_KEY: string;
+    // Add more environment variables here as needed
+  }
+  
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+  }
+  

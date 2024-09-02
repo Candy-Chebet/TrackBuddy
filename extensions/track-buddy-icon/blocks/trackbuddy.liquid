@@ -1,60 +1,29 @@
-<button is="party-button">
-  <img src="{{ 'delivery.png' | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
-  <span class="tracking-text">{{ 'tracking.home.trackingText' | t }}</span>
-</button>
+<link rel="stylesheet" href="{{ 'trackbuddy.css' | asset_url }}">
+
+<div id="trackbuddy-app">
+  <button id="trackbuddy-button">
+    <img src="{{ 'delivery.png' | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+    <span class="tracking-text">{{ 'tracking.home.trackingText' | t }}</span>
+  </button>
+  
+  <iframe 
+    id="trackbuddy-iframe" 
+    src="{{ 'https://oaks-finder-maryland-exceptions.trycloudflare.com/packagetrack/app/track' }}" 
+    style="border: none; width: 100%; height: 600px;" 
+    title="Track Package">
+  </iframe>
+</div>
 
 <script>
-  // Select the button element
-  const partyButton = document.querySelector('button[is="party-button"]');
-
-  // Add a click event listener to the button
-  partyButton.addEventListener('click', function() {
-    // Redirect to the desired page
-    window.location.href = "./app/route/app/track";
+  document.querySelector('#trackbuddy-button').addEventListener('click', function() {
+    document.querySelector('#trackbuddy-iframe').style.display = 'block';
   });
 </script>
-
-<style>
-  button[is="party-button"] {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 4px solid hsl(0, 100%, 50%);
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    z-index: 100;
-    transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-
-  button[is="party-button"] .tracking-text {
-    font-size: 11px; /* Adjust the font size as needed */
-  }
-
-  button[is="party-button"]:hover {
-    transform: scale(1.10);
-  }
-
-  button[is="party-button"]:active {
-    transform: scale(0.95);
-  }
-
-  canvas:empty {
-    display: initial;
-  }
-</style>
-
 
 {% schema %}
 {
   "name": "TrackBuddy",
   "target": "body",
-
   "settings": []
 }
 {% endschema %}
-

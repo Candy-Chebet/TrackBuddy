@@ -3,7 +3,7 @@
 client_id = "4b1564c3813f68db2f8b3304b4ea37d1"
 name = "PackageTrack"
 handle = "packagetrack"
-application_url = "https://omaha-rwanda-query-platforms.trycloudflare.com"
+application_url = "https://think-you-toxic-eve.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://omaha-rwanda-query-platforms.trycloudflare.com/auth/callback",
-  "https://omaha-rwanda-query-platforms.trycloudflare.com/auth/shopify/callback",
-  "https://omaha-rwanda-query-platforms.trycloudflare.com/api/auth/callback"
+  "https://think-you-toxic-eve.trycloudflare.com/auth/callback",
+  "https://think-you-toxic-eve.trycloudflare.com/auth/shopify/callback",
+  "https://think-you-toxic-eve.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

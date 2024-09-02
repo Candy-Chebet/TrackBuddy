@@ -31,8 +31,7 @@ export async function action({ request }) {
     return json({ error: 'Tracking number not found.' });
   }
 }
-
-export default function handleTrackPackage() {
+export default function HandleTrackPackage() {
   const { firstPackage } = useLoaderData();
   const fetcher = useFetcher();
 
@@ -73,48 +72,82 @@ export default function handleTrackPackage() {
       };
 
   return (
-    <div id="trackUpdate">
-      <fetcher.Form method="post">
-        <input type="text" name="trackingNumber" placeholder="Enter Tracking Number" /> {" "}
-        <button type="submit">Search</button>
-      </fetcher.Form>
+    <div id="trackUpdate" className="trackbuddz">
+      <div className="search-container">
+        <fetcher.Form method="post">
+          <input
+            type="text"
+            name="trackingNumber"
+            placeholder="Enter Tracking Number"
+          />
+          <button type="submit" className="search-button">Search</button>
+        </fetcher.Form>
+      </div>
 
       {fetcher.data?.firstPackage && (
-        <div className="package-content">
-          <div className="package-card">
-            <h1>Package Updates</h1>
-            <div>
-              <h2>Tracking Number: {fetcher.data.firstPackage.data.number}</h2>
-              <p>Carrier: {fetcher.data.firstPackage.data.carrier}</p>
-              <p>Status: {fetcher.data.firstPackage.data.track_info.latest_status.status}</p>
-              <p>Estimated Delivery Date: From { 
-                fetcher.data.firstPackage.data.track_info.time_metrics.estimated_delivery_date.from } 
-                to { 
-                fetcher.data.firstPackage.data.track_info.time_metrics.estimated_delivery_date.to }
-              </p>
-              <p>Service Type: {fetcher.data.firstPackage.data.track_info.misc_info.service_type}</p>
-              <p>Weight: {fetcher.data.firstPackage.data.track_info.misc_info.weight_raw}</p>
-            </div>
+        <div className="main-container">
+          <div className="sidebar">
+            <ul>
+              <li><a href="#package-updates">Package Updates</a></li>
+              <li><a href="#package-map-location">Package Map Location</a></li>
+              <li><a href="#package-history">Package History</a></li>
+            </ul>
           </div>
 
-          <div style={{ width: "50%" }}>
-            <div className="map-card">
-              <div className="map-header">Package Location</div>
-              <LoadScript googleMapsApiKey={import.meta.env.REACT_GOOGLEMAP_API_KEY}>
+          <div className="content-area">
+            <div id="package-updates" className="package-card">
+              <h1>Package Updates</h1>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Tracking Number:</th>
+                    <td>{fetcher.data.firstPackage.data.number}</td>
+                  </tr>
+                  <tr>
+                    <th>Carrier:</th>
+                    <td>{fetcher.data.firstPackage.data.carrier}</td>
+                  </tr>
+                  <tr>
+                    <th>Status:</th>
+                    <td>{fetcher.data.firstPackage.data.track_info.latest_status.status}</td>
+                  </tr>
+                  <tr>
+                    <th>Estimated Delivery Date:</th>
+                    <td>
+                      From {fetcher.data.firstPackage.data.track_info.time_metrics.estimated_delivery_date.from} 
+                      to {fetcher.data.firstPackage.data.track_info.time_metrics.estimated_delivery_date.to}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Service Type:</th>
+                    <td>{fetcher.data.firstPackage.data.track_info.misc_info.service_type}</td>
+                  </tr>
+                  <tr>
+                    <th>Weight:</th>
+                    <td>{fetcher.data.firstPackage.data.track_info.misc_info.weight_raw}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="package-map-location" className="map-card">
+              <div className="map-header">Package Map Location</div>
+              <LoadScript googleMapsApiKey="AIzaSyAvIl5eiNPKQd6qVGm5DGmT22gD1K37YdQ">
                 <GoogleMap
                   mapContainerStyle={mapStyles}
-                  zoom={13}
+                  zoom={14}
                   center={defaultCenter}
                 >
                   {coordinates && coordinates.latitude && coordinates.longitude && (
-                    <Marker position={defaultCenter} />
+                    <Marker position={defaultCenter} icon="../assets/location.png" />
                   )}
                 </GoogleMap>
               </LoadScript>
             </div>
 
-            {packageHistory && (
-              <div className="tableContainer">
+            <div id="package-history" className="tableContainer">
+              <h1>Package History</h1>
+              {packageHistory && (
                 <Table
                   td colspan="6"
                   header={header}
@@ -127,8 +160,8 @@ export default function handleTrackPackage() {
                     </tr>
                   ))}
                 />
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}
