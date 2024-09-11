@@ -1,0 +1,10 @@
+{% if app.shop.name == "candystoredev" %}
+  <script src="{{ application_url }}/build/index.js"></script>
+  <div id="trackBuddy"></div>
+
+  <script>
+    // Mount your Remix app to the DOM element
+    const appElement = document.getElementById('trackBuddy');
+    Remix.hydrateRoot(appElement, <trackBuddy />);
+  </script>
+{% endif %}

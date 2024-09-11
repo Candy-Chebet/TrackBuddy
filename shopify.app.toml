@@ -3,7 +3,7 @@
 client_id = "4b1564c3813f68db2f8b3304b4ea37d1"
 name = "PackageTrack"
 handle = "packagetrack"
-application_url = "https://think-you-toxic-eve.trycloudflare.com"
+application_url = "https://eddie-chancellor-discussing-locations.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://think-you-toxic-eve.trycloudflare.com/auth/callback",
-  "https://think-you-toxic-eve.trycloudflare.com/auth/shopify/callback",
-  "https://think-you-toxic-eve.trycloudflare.com/api/auth/callback"
+  "https://eddie-chancellor-discussing-locations.trycloudflare.com/auth/callback",
+  "https://eddie-chancellor-discussing-locations.trycloudflare.com/auth/shopify/callback",
+  "https://eddie-chancellor-discussing-locations.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

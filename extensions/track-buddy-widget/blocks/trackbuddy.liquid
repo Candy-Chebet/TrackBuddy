@@ -1,0 +1,23 @@
+{% include 'package-tracking-embed' %}
+
+{% if product.tracking_info %}
+  <div id="trackUpdate" class="trackbuddz">
+    <div id="package-updates" class="package-card">
+      <h1>Package Updates</h1>
+      <table>
+        </table>
+    </div>
+
+    {% if product.tracking_info.coordinates %}
+      <div id="package-map-location" class="map-card">
+        </div>
+    {% endif %}
+
+    {% if product.tracking_info.history %}
+      <div id="package-history" class="tableContainer">
+        <h1>Package History</h1>
+        <Table </div>
+    {% endif %}
+  </div>
+{% endif %}
+
